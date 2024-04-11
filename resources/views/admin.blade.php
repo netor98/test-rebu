@@ -45,7 +45,7 @@
                         </th>
                         <td class="px-3 py-4">
                             <div class="showPhoto">
-                                <div id="imagePreview" style="@if ($product->image != '') background-image: url('{{ asset('uploads') }}/{{ $product->image }}')@else background-image: url('{{ url('/img/fondo.jpg') }}') @endif;">
+                                <div id="imagePreview" style="@if ($product->image != '') background-image: url('{{ asset('/storage/uploads') }}/{{ $product->image }}')@else background-image: url('{{ url('/img/fondo.jpg') }}') @endif;">
                                 </div>
                             </div>
 

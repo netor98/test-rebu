@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\File;
 class AdminController extends Controller
 {
     public function index() {
+        if (auth()->user()->name !== "admin") {
+            return redirect('shop');
+        }
+
+        
         $products = Product::all();
        
         return view('admin', compact('products'));
@@ -47,7 +52,7 @@ class AdminController extends Controller
             $file = $request->file('image');
             $file_name = time() . $file->getClientOriginalName();
  
-            $file->move($file_path, $file_name);
+            $file->storeAs('/uploads', $file_name);
             $insert->image = $file_name;
         }
 
@@ -63,41 +68,48 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate(
-            [
-                'name' => 'required|unique:users',
-                'cuantity' => 'required|numeric',
-                'price' => 'required|numeric',
-                'active' => 'required|numeric',
-                'image' => 'mimes:png,jpeg,jpg|max:2048',
-            ]
-        );
-
+        $request->validate([
+            'name' => 'required|unique:products,name,' . $id,
+            'cuantity' => 'required|numeric',
+            'price' => 'required|numeric',
+            'active' => 'required|numeric',
+            'image' => 'mimes:png,jpeg,jpg|max:2048',
+        ]);
+    
         $update = Product::findOrFail($id);
         $update->name = $request->name;
         $update->cuantity = $request->cuantity;
         $update->price = $request->price;
         $update->active = $request->active;
         $update->description = 'En desarrollo';
- 
+    
         if ($request->hasfile('image')) {
-            $filePath = public_path('uploads');
             $file = $request->file('image');
             $file_name = time() . $file->getClientOriginalName();
-            $file->move($filePath, $file_name);
-            // delete old image
+            
+            // Move the uploaded file to the public uploads directory
+            // $file->move(public_path('uploads'), $file_name);
+
+            $file->storeAs('/uploads', $file_name);
+
+    
+            // Delete old image if exists
             if (!is_null($update->image)) {
-                $oldImage = public_path('uploads/' . $update->image);
-                if (File::exists($oldImage)) {
-                    unlink($oldImage);
+                $oldImagePath = public_path('uploads/' . $update->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
                 }
             }
+    
             $update->image = $file_name;
         }
-        $result = $update->save();
-        return redirect()->route('admin');
 
+        
+    
+        $update->save();
+        return redirect()->route('admin');
     }
+    
 
 
 

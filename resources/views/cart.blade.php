@@ -51,7 +51,7 @@
 
                     <div class="border rounded-lg p-4">
                         <div class="flex items-center justify-between gap-2">
-                            <img src="{{ asset('uploads') }}/{{ $details['image'] }}" alt="Product Image" class="w-16 h-16 object-cover">
+                            <img src="{{ asset('storage/uploads') }}/{{ $details['image'] }}" alt="Product Image" class="w-16 h-16 object-cover">
                             <div class="ml-4">
                                 <h3 class="font-semibold">{{ $details['name']}}</h3>
                             </div>
