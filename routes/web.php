@@ -15,6 +15,37 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/show-structure', function () {
+    // Obtener la estructura de archivos
+    $directory = public_path();
+    $structure = recursiveFileStructure($directory);
+    
+    // Mostrar la estructura de archivos
+    dd($structure);
+});
+
+// Función para obtener la estructura de archivos de forma recursiva
+function recursiveFileStructure($directory) {
+    $files = [];
+
+    $items = scandir($directory);
+    foreach ($items as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+
+        $path = $directory . '/' . $item;
+        if (is_dir($path)) {
+            $files[$item] = recursiveFileStructure($path);
+        } else {
+            $files[] = $item;
+        }
+    }
+
+    return $files;
+}
+
+
 Route::get('/linkstorage', function () {
     $target = '/home/public_html/storage/app/public';
     $shortcut = '/home/public_html/public/storage';
