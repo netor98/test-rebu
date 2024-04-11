@@ -26,11 +26,6 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        if (!File::exists(public_path('storage'))) {
-            // Obtiene la ruta relativa desde public a storage/app/public
-            $relativePath = '../../storage/app/public';
-            // Crea el enlace simbólico
-            File::link(storage_path('app/public'), public_path('storage', $relativePath));
-        }
+       
     }
 }
