@@ -47,8 +47,8 @@ function recursiveFileStructure($directory) {
 
 
 Route::get('/linkstorage', function () {
-    $target = '/home/public_html/storage/app/public';
-    $shortcut = '/home/public_html/public/storage';
+    $target = 'storage/app/public';
+    $shortcut = 'storage';
    symlink($target, $shortcut);
 });
 
