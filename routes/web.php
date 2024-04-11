@@ -52,6 +52,11 @@ Route::get('/linkstorage', function () {
     symlink($target, $shortcut);
 });
 
+Route::get('/run-script', function () {
+    $output = shell_exec('sh /create_storage_link.sh');
+    dd($output);
+});
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
