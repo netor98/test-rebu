@@ -117,7 +117,7 @@
                         
                         <div class="border border-gray-200 hover:border-gray-300 hover:scale-105 transition-transform rounded-lg relative p-3">
                         
-                            <img src="{{ asset('storage/uploads/' . $product->image) }}" alt="{{ $product->name }}" class="h-36 my-4">
+                            <img src="{{ asset('/public/uploads' . $product->image) }}" alt="{{ $product->name }}" class="h-36 my-4">
                         
                             <h3 class="font-medium name">{{$product->name}}</h3>
         
