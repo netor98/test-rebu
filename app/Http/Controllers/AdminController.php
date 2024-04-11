@@ -51,7 +51,7 @@ class AdminController extends Controller
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $file_name = time() . $file->getClientOriginalName();
-            $request->storeAs('uploads', $file_name);
+            $file->storeAs('uploads', $file_name);
             $insert->image = $file_name;
         }
 
