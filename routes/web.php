@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,9 +15,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/create-symlink', function (){
-    symlink(storage_path('app/public'), public_path('storage'));
-    echo "Symlink Created. Thanks";
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
 });
 
 
