@@ -7,6 +7,7 @@
         <title>REBU - @yield('titulo')</title>
         @vite('resources/css/app.css')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     </head>
     <body>
