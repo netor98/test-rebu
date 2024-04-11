@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -52,7 +52,7 @@ class AdminController extends Controller
             $file = $request->file('image');
             $file_name = time() . $file->getClientOriginalName();
  
-            $file->storeAs('/uploads', $file_name);
+            Storage::disk('uploads')->put($file_name, $file);
             $insert->image = $file_name;
         }
 
