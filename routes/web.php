@@ -12,6 +12,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/create-symlink', function (){
+    symlink(storage_path('/app/public'), public_path('storage'));
+    echo "Symlink Created. Thanks";
+});
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
