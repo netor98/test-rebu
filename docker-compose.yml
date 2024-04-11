@@ -27,7 +27,7 @@ services:
             - meilisearch
             - mailpit
             - selenium
-        command: sh -c "ln -s ../storage/app/public storage && (exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf)"
+        command: bash -c "sh /var/www/html/create_storage_link.sh && (exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf)"
     mysql:
         image: "mysql/mysql-server:8.0"
         ports:
