@@ -52,8 +52,6 @@ class AdminController extends Controller
             $file = $request->file('image');
             $file_name = time() . $file->getClientOriginalName();
 
-            $destinationPath = public_path().'/storage/uploads' ;
-            $file->move($destinationPath,$file_name);
  
             Storage::disk('uploads')->put($file_name, $file);
             $insert->image = $file_name;
