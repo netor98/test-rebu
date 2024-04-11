@@ -1,4 +1,4 @@
 #!/bin/bash
-echo "olaaa"
+
 cd public
-ln -s ../storage/app/public storage
+ln -s ../../storage/public storage
