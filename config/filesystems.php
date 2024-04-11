@@ -46,7 +46,7 @@ return [
 
         'uploads' => [
             'driver' => 'local',
-            'root'   => public_path() . 'storage/uploads',
+            'root'   => public_path() . '/storage/uploads',
         ],
 
         's3' => [
