@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/linkstorage', function () {
-    $target = storage_path('app/public');
-    $link = $_SERVER['DOCUMENT_ROOT'] . '/storage';
-    symlink($target, $link);
+    $target = '/home/public_html/storage/app/public';
+    $shortcut = '/home/public_html/public/storage';
+   symlink($target, $shortcut);
 });
 
 
