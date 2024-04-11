@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd public
-ln -s storage/app/public public/storage
+
+ln -s /var/www/storage/app/assets/storage/app/public /var/www/html/public/storage

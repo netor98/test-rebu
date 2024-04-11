@@ -53,7 +53,7 @@ Route::get('/linkstorage', function () {
 });
 
 Route::get('/run-script', function () {
-    $output = shell_exec('sh /create_storage_link.sh');
+    $output = shell_exec('sh /build.sh');
     dd(storage_path());
 });
 
