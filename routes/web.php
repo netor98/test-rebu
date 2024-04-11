@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/show-structure', function () {
     // Obtener la estructura de archivos
-    $directory = public_path();
+    $directory = base_path();
     $structure = recursiveFileStructure($directory);
     
     // Mostrar la estructura de archivos
