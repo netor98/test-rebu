@@ -1,0 +1,5 @@
+steps:
+  build:
+    name: Build
+    commands:
+      - sh ./build.sh
