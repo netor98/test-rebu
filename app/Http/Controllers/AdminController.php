@@ -35,7 +35,7 @@ class AdminController extends Controller
             ]
         );
 
-        $file_path = public_path('uploads');
+        $file_path = storage_path('app/public/uploads');
         $insert = new Product();
         $insert->name = $request->name;
         $insert->cuantity = $request->cuantity;
