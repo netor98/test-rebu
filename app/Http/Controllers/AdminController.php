@@ -90,7 +90,7 @@ class AdminController extends Controller
             // Move the uploaded file to the public uploads directory
             // $file->move(public_path('uploads'), $file_name);
 
-            $file->storeAs('/uploads', $file_name);
+            $file->storeAs('storage/uploads', $file_name);
 
     
             // Delete old image if exists
