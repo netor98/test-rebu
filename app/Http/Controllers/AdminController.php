@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
+
+
+
 class AdminController extends Controller
 {
     public function index() {
@@ -51,7 +56,12 @@ class AdminController extends Controller
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $file_name = time() . $file->getClientOriginalName();
-            $file->move(public_path('storage/uploads'), $file_name);
+
+            $manager = new ImageManager(new Driver());
+            $server_image = $manager::imagick()->read($file);
+
+            $path = public_path('storage/uploads') . '/' . $file_name;
+            $server_image->toPng()->save($path);
             $insert->image = $file_name;
         }
 
@@ -88,6 +98,7 @@ class AdminController extends Controller
             
             // Move the uploaded file to the public uploads directory
             // $file->move(public_path('uploads'), $file_name);
+
 
             $file->storeAs('storage/uploads', $file_name);
 
